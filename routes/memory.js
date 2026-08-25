@@ -33,10 +33,20 @@ const upload = multer({
 });
 
 // HOME
-router.get("/", (req, res) => {
-  res.render("home");
-});
+router.get("/", async (req, res) => {
+  try {
+    const totalMemories = await Memory.countDocuments();
 
+    res.render("home", {
+      totalMemories
+    });
+  } catch (error) {
+    console.error(error);
+    res.render("home", {
+      totalMemories: 0
+    });
+  }
+});
 // CREATE PAGE
 router.get("/create", (req, res) => {
   res.render("create");
