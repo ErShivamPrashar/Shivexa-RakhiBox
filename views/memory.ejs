@@ -91,16 +91,18 @@
 
     <% if (memory.photos && memory.photos.length > 0) { %>
 
-      <section class="memory-gallery">
+      <section class="memory-gallery" style="display: flex; justify-content: center;">
 
         <% memory.photos.forEach((photo, index) => { %>
 
-          <div class="gallery-item">
+          <div class="gallery-item" style=" width:250px;
+              height:200PX">
 
             <img
               src="<%= photo %>"
               alt="Rakhi memory <%= index + 1 %>"
               loading="lazy"
+             
             >
 
           </div>
