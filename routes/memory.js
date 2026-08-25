@@ -5,7 +5,7 @@ const multer = require("multer");
 const { v2: cloudinary } = require("cloudinary");
 const QRCode = require("qrcode");
 
-const Memory = require("../models/Memory");
+const Memory = require("../models/memory");
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
