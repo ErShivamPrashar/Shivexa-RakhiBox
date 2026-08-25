@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    <%= memory.brotherName %> & <%= memory.sisterName %> — Shivexa
+  </title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body class="memory-page">
+
+
+  <!-- TOP -->
+
+  <nav class="memory-nav">
+
+    <div class="brand">
+      Shivexa<span>®</span>
+    </div>
+
+    <div>
+      A Rakhi Memory ❤️
+    </div>
+
+  </nav>
+
+
+  <main class="memory-wrapper">
+
+
+    <!-- HERO -->
+
+    <section class="memory-hero">
+
+      <div class="tiny-label">
+        ✦ A DIGITAL MEMORY BY SHIVEXA
+      </div>
+
+      <div class="rakhi-symbol">
+        🪷
+      </div>
+
+      <p>
+        HAPPY RAKSHA BANDHAN
+      </p>
+
+      <h1>
+
+        <%= memory.brotherName %>
+
+        <span>&</span>
+
+        <%= memory.sisterName %>
+
+      </h1>
+
+      <div class="memory-year">
+        2026
+      </div>
+
+    </section>
+
+
+    <!-- PHOTOS -->
+
+    <% if (memory.photos && memory.photos.length > 0) { %>
+
+      <section class="memory-gallery">
+
+        <% memory.photos.forEach((photo, index) => { %>
+
+          <div class="gallery-item">
+
+            <img
+              src="<%= photo %>"
+              alt="Rakhi memory <%= index + 1 %>"
+              loading="lazy"
+            >
+
+          </div>
+
+        <% }) %>
+
+      </section>
+
+    <% } %>
+
+
+    <!-- MESSAGE -->
+
+    <section class="heart-message">
+
+      <div class="message-label">
+        A LITTLE SOMETHING FROM THE HEART
+      </div>
+
+      <div class="big-quote">
+        “
+      </div>
+
+      <p>
+        <%= memory.message %>
+      </p>
+
+      <div class="message-heart">
+        ❤️
+      </div>
+
+    </section>
+
+
+    <!-- BOND -->
+
+    <section class="bond-section">
+
+      <div class="bond-line"></div>
+
+      <span>
+        SOME BONDS
+      </span>
+
+      <h2>
+        Are made to<br>
+        last forever.
+      </h2>
+
+      <div class="bond-line"></div>
+
+    </section>
+
+
+    <!-- QR -->
+
+    <section class="qr-section">
+
+      <div class="qr-content">
+
+        <div class="section-label">
+          KEEP THIS MEMORY CLOSE
+        </div>
+
+        <h2>
+          Save it.<br>
+          Share it. ❤️
+        </h2>
+
+        <p>
+          Scan the QR code anytime to
+          revisit this special memory.
+        </p>
+
+      </div>
+
+
+      <div class="qr-box">
+
+        <img
+          src="<%= qrCode %>"
+          alt="Memory QR Code"
+        >
+
+        <small>
+          Scan to open memory
+        </small>
+
+      </div>
+
+    </section>
+
+
+    <!-- SHARE -->
+
+    <section class="share-section">
+
+      <button
+        onclick="shareMemory()"
+        class="main-btn"
+      >
+        📤 Share This Memory
+      </button>
+
+      <p>
+        Send this little piece of your bond to your sibling.
+      </p>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="memory-footer">
+
+    <div class="footer-brand">
+      Shivexa<span>®</span>
+    </div>
+
+    <p>
+      Technology that brings people closer.
+    </p>
+
+    <div>
+      Made with ❤️ in India
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    async function shareMemory() {
+
+      const url = window.location.href;
+
+      if (navigator.share) {
+
+        try {
+
+          await navigator.share({
+            title: "Our Rakhi Memory ❤️",
+            text: "A special Rakhi memory created with Shivexa.",
+            url: url
+          });
+
+        } catch (error) {
+
+          console.log(error);
+
+        }
+
+      } else {
+
+        try {
+
+          await navigator.clipboard.writeText(url);
+
+          alert(
+            "Memory link copied! ❤️"
+          );
+
+        } catch (error) {
+
+          alert(
+            "Copy this link: " + url
+          );
+
+        }
+
+      }
+
+    }
+
+  </script>
+
+
+</body>
+</html>

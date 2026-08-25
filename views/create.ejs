@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Create Memory — Shivexa RakhiBox</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body class="create-body">
+
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <a href="/" class="brand">
+      Shivexa<span>®</span>
+    </a>
+
+    <a href="/" class="back-link">
+      ← Back
+    </a>
+
+  </nav>
+
+
+  <!-- FORM -->
+
+  <main class="create-page">
+
+    <div class="create-intro">
+
+      <div class="festival-badge">
+        ❤️ Shivexa RakhiBox
+      </div>
+
+      <h1>
+        Create your<br>
+        <span>Rakhi Memory.</span>
+      </h1>
+
+      <p>
+        Just a few details. We'll turn them
+        into something beautiful.
+      </p>
+
+    </div>
+
+
+    <form
+      action="/create"
+      method="POST"
+      enctype="multipart/form-data"
+      class="memory-form"
+    >
+
+
+      <!-- NAMES -->
+
+      <div class="form-section">
+
+        <div class="form-section-title">
+          <span>01</span>
+          The People
+        </div>
+
+
+        <div class="input-row">
+
+          <div class="input-group">
+
+            <label>
+              Your Name
+            </label>
+
+            <input
+              type="text"
+              name="brotherName"
+              placeholder="e.g. Shivam"
+              maxlength="50"
+              required
+            >
+
+          </div>
+
+
+          <div class="input-group">
+
+            <label>
+              Sibling's Name
+            </label>
+
+            <input
+              type="text"
+              name="sisterName"
+              placeholder="e.g. Anjali"
+              maxlength="50"
+              required
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PHOTOS -->
+
+      <div class="form-section">
+
+        <div class="form-section-title">
+          <span>02</span>
+          Your Memories
+        </div>
+
+        <label class="upload-area">
+
+          <input
+            type="file"
+            name="photos"
+            accept="image/png,image/jpeg,image/webp"
+            multiple
+            id="photoInput"
+          >
+
+          <div class="upload-icon">
+            📸
+          </div>
+
+          <h3>
+            Add your favourite photos
+          </h3>
+
+          <p>
+            Up to 5 photos • JPG, PNG or WebP
+          </p>
+
+          <div class="upload-button">
+            Choose Photos
+          </div>
+
+        </label>
+
+        <div id="photoPreview" class="photo-preview"></div>
+
+      </div>
+
+
+      <!-- MESSAGE -->
+
+      <div class="form-section">
+
+        <div class="form-section-title">
+          <span>03</span>
+          From The Heart
+        </div>
+
+
+        <div class="input-group">
+
+          <label>
+            Write a special message
+          </label>
+
+          <textarea
+            name="message"
+            id="message"
+            
+            maxlength="500"
+            placeholder="Write something they'll remember forever..."
+            
+            required
+          >We may grow older, our lives may change, and distance may come between us, but the love between a brother and sister never grows old. Some bonds are written in the heart, and this one will stay there forever. ❤️ — Shivexa</textarea>
+
+          <div class="character-count">
+            <span id="count">0</span>/500
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SUBMIT -->
+
+      <div class="form-submit">
+
+        <button
+          type="submit"
+          class="main-btn submit-btn"
+        >
+          Create My Memory
+          <span>→</span>
+        </button>
+
+        <p>
+          🔒 No account required • Completely free
+        </p>
+
+      </div>
+
+
+    </form>
+
+  </main>
+
+
+  <script>
+
+    const message = document.getElementById("message");
+    const count = document.getElementById("count");
+
+    message.addEventListener("input", () => {
+      count.textContent = message.value.length;
+    });
+
+
+    const photoInput =
+      document.getElementById("photoInput");
+
+    const photoPreview =
+      document.getElementById("photoPreview");
+
+
+    photoInput.addEventListener("change", () => {
+
+      photoPreview.innerHTML = "";
+
+      const files =
+        Array.from(photoInput.files).slice(0, 5);
+
+
+      files.forEach(file => {
+
+        const reader = new FileReader();
+
+        reader.onload = e => {
+
+          const img =
+            document.createElement("img");
+
+          img.src = e.target.result;
+
+          photoPreview.appendChild(img);
+
+        };
+
+        reader.readAsDataURL(file);
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
